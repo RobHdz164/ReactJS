@@ -1,18 +1,69 @@
 h2{
-    color: rgb(179, 37, 37)
+    color:midnightblue;
 }
 
 h1{
-    color: rgb(58, 58, 148)
+    color: lightgreen
 }
 .encabezado{
-    background-color: lightgray;
+    background-color: aquamarine;
+    width: 100%;
+    display: flex;
 }
-.logo img{
-    width: 500px;
-    height: 300px;
+.logoDiv {
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
-.redes img{
-    width: 30px;
-    height: 30px;
+.logoDiv img{
+    width: 150px;
+    ;
+}
+.redesDiv {
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.redesDiv ul{
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    text-decoration: none;
+}
+.redesDiv img{
+    width: 60px;
+    height: 60px;
+
+}
+.redesDiv ul li a{
+    text-decoration: none;
+}
+.menuDiv {
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.menuDiv ul{
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    justify-content: center;
+}
+.menuDiv ul li a{
+    text-decoration: none;
+    color: black;
+}
+.menuDiv ul li a:hover{
+    background-color: cornflowerblue;
+    padding: 21px;
+    border-radius: 20px;
 }

@@ -11,7 +11,6 @@ function Encabezado() {
         <Logo/>
         <Menu/>
         <Redes/>
-        <h2>Bienvenido a mi sitio</h2>
     </div>
   );
 }
@@ -19,19 +18,19 @@ function Encabezado() {
 
 function Logo(){
     return (    
-    <div className='logo'>
+    <div className='logoDiv'>
         <img src={milogo} alt="Logo de la aplicación"/>
     </div>
         );
 }
 function Redes(){
     return (
-        <div className='redes'>
+        <div className='redesDiv'>
         <ul>
-            <li><img src={Tiktok} alt="Tiktok"/></li>
-            <li><img src={Youtube} alt="Youtube"/></li>
-            <li><img src={Instagram} alt="Instagram"/></li>
-            <li><img src={Twitter} alt="Twitter"/></li>
+            <li><a href='#'><img src={Tiktok} alt="Tiktok"/></a></li>
+            <li><a href='#'><img src={Youtube} alt="Youtube"/></a></li>
+            <li><a href='#'><img src={Instagram} alt="Instagram"/></a></li>
+            <li><a href='#'><img src={Twitter} alt="Twitter"/></a></li>
         </ul>
         </div>
     );
@@ -39,15 +38,17 @@ function Redes(){
 
 function Menu(){
     return (
-        <nav>
+        <div className='menuDiv'>
             <ul>
-                <li>Inicio</li>
-                <li>Acerca de</li>
-                <li>Productos</li>
-                <li>Contactos</li>
-                <li>Sucursales</li>
+                <li><a href='#'>Inicio</a></li>
+                <li><a href='#'>Acerca de</a></li>
+                <li><a href='#'>Productos</a></li>
+                <li><a href='#'>Galeria</a></li>
+                <li><a href='#'>Clientes</a></li>
+                <li><a href='#'>Contactos</a></li>
+                <li><a href='#'>Sucursales</a></li>
             </ul>
-        </nav>
+        </div>
     )
 }
 export default Encabezado;

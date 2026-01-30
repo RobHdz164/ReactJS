@@ -1,0 +1,32 @@
+.ContenedorTarjeta{
+    margin: 20px;
+    text-align: center;
+    width: 95%;
+    height: 300px;
+    background-color: aqua;
+    border-radius: 15px;
+}
+.Tarjeta {
+    width: 20%;
+    height: 250px;
+    display: inline-block;
+    margin: 10px;
+    background-color: lightgray;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px gray;
+}
+.Tarjeta a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.Tarjeta:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 8px 8px 15px black;
+}
+.Tarjeta img{
+    width: 80px;
+    height: 120px;
+    margin-top: 10px;
+}

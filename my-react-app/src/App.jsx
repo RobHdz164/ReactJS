@@ -1,9 +1,11 @@
+import ContenedorTarjeta from './ContenedorTarjeta.jsx';
 import Encabezado from './Encabezado.jsx';
 function App(){
 
   return (
     <div>
       <Encabezado/>
+      <ContenedorTarjeta/>
       <h1>5A EVND</h1>
       <h2>Profesor:</h2>
       <h3>Ricardo Luna Santos</h3>
