@@ -3,7 +3,7 @@ h2{
 }
 
 h1{
-    color: lightgreen
+    color: lightgreen;
 }
 .encabezado{
     background-color: aquamarine;
@@ -65,7 +65,7 @@ h1{
     padding: 20px;
     justify-content: center;
 }
-.menuDiv ul li a{
+.menuDiv ul li{
     text-decoration: none;
     color: black;
     padding: 12px 20px;
@@ -74,13 +74,13 @@ h1{
     position: relative;
     display: inline-block;
 }
-.menuDiv ul li a:hover{
+.menuDiv ul li:hover{
     background-color: cornflowerblue;
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(100, 149, 237, 0.4);
 }
-.menuDiv ul li a:active{
+.menuDiv ul li:active{
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(100, 149, 237, 0.3);
 }
