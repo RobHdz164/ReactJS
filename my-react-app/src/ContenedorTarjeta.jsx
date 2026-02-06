@@ -4,20 +4,20 @@ import tarjetaLogo from './assets/imgtarjeta.png';
 function ContenedorTarjeta(){
   return (
     <div className="ContenedorTarjeta">
-        <Tarjeta/>
-        <Tarjeta/>
-        <Tarjeta/>
-        <Tarjeta/>
+        <Tarjeta titulo="Cafe latte" contenido="Delicioso cafe con leche" />
+        <Tarjeta titulo="Espresso" contenido="Cafe fuerte y concentrado" />
+        <Tarjeta titulo="Cappuccino" contenido="Cafe con espuma de leche" />
+        <Tarjeta titulo="Mocha" contenido="Cafe con chocolate y leche" />
     </div>
   );
 }
 
-function Tarjeta(){
+function Tarjeta(props){
   return (
     <div className="Tarjeta">
         <img src={tarjetaLogo} alt="Tarjeta Logo"></img>
-        <h3>Esta es una tarjeta</h3>
-        <p>Contenido de la tarjeta</p>
+        <h3>{props.titulo}</h3>
+        <p>{props.contenido}</p>
         <a href='#'>Ver más</a>
     </div>  );
 }   
