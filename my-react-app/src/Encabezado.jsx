@@ -1,4 +1,4 @@
-import milogo from './assets/logo.png';
+import milogo from './assets/logo.jpg';
 import Tiktok from './assets/tik-tok.png';
 import Youtube from './assets/youtube.png';
 import Instagram from './assets/instagram.png';

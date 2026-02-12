@@ -3,62 +3,68 @@ import './Productos.css';
 const productos = [
     {
         nombre: "Café Latte",
-        descripcion: "Suave espresso combinado con leche vaporizada y una fina capa de espuma.",
+        descripcion: "Suave espresso combinado con leche vaporizada y una fina capa de espuma sedosa.",
         precio: "$65.00",
-        imagen: "https://m.media-amazon.com/images/I/81jSgNvFxfL._AC_UF894,1000_QL80_.jpg"
+        imagen: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=500"
     },
     {
         nombre: "Espresso Doble",
-        descripcion: "Doble shot de espresso intenso, ideal para los amantes del café puro.",
+        descripcion: "Doble shot de espresso intenso, ideal para los amantes del café puro y con cuerpo.",
         precio: "$50.00",
-        imagen: "https://dulcealcance.com/cdn/shop/products/starbucksvanilla4.jpg?v=1685437213&width=1445"
+        imagen: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=500"
     },
     {
         nombre: "Cappuccino",
         descripcion: "Equilibrio perfecto entre espresso, leche vaporizada y abundante espuma cremosa.",
         precio: "$70.00",
-        imagen: "https://dulcealcance.com/cdn/shop/products/starbucksvanilla2.jpg?v=1685437240&width=1445"
+        imagen: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=500"
     },
     {
         nombre: "Mocha",
-        descripcion: "Espresso con chocolate oscuro y leche, coronado con crema batida.",
+        descripcion: "Espresso con chocolate oscuro y leche, coronado con crema batida irresistible.",
         precio: "$75.00",
-        imagen: "https://www.nestleprofessional-latam.com/sites/default/files/styles/np_product_detail/public/2023-05/7613038704845-8_2.png?itok=4cgbAppV"
+        imagen: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=500"
     },
     {
         nombre: "Americano",
-        descripcion: "Espresso diluido en agua caliente para un sabor suave pero con carácter.",
+        descripcion: "Espresso diluido en agua caliente para un sabor suave pero con carácter único.",
         precio: "$45.00",
-        imagen: "https://images.unsplash.com/photo-1521302080334-4bebac2763a6?w=400"
+        imagen: "https://images.unsplash.com/photo-1551030173-122aabc4489c?w=500"
     },
     {
         nombre: "Cold Brew",
-        descripcion: "Café preparado en frío durante 12 horas, suave y refrescante.",
+        descripcion: "Café preparado en frío durante 12 horas, suave, refrescante y lleno de sabor.",
         precio: "$80.00",
-        imagen: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400"
+        imagen: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500"
     },
     {
         nombre: "Café Turco",
         descripcion: "Preparación tradicional con granos molidos extra finos y un toque de cardamomo.",
         precio: "$60.00",
-        imagen: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=400"
+        imagen: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=500"
     },
     {
-        nombre: "Frappuccino Caramelo",
-        descripcion: "Bebida fría mezclada con café, hielo, leche y sirope de caramelo.",
+        nombre: "Frappé Caramelo",
+        descripcion: "Bebida fría mezclada con café, hielo, leche y sirope de caramelo artesanal.",
         precio: "$85.00",
-        imagen: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400"
+        imagen: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500"
     },
 ];
 
 function ProductoCard({ producto }) {
     return (
         <div className="producto-card">
-            <img src={producto.imagen} alt={producto.nombre} />
-            <h3>{producto.nombre}</h3>
-            <p className="producto-descripcion">{producto.descripcion}</p>
-            <p className="producto-precio">{producto.precio}</p>
-            <a href="#" className="producto-btn">Ordenar</a>
+            <div className="producto-img-wrapper">
+                <img src={producto.imagen} alt={producto.nombre} />
+            </div>
+            <div className="producto-body">
+                <div className="producto-top">
+                    <h3>{producto.nombre}</h3>
+                    <span className="producto-precio">{producto.precio}</span>
+                </div>
+                <p className="producto-descripcion">{producto.descripcion}</p>
+                <a href="#" className="producto-btn">Ordenar ahora</a>
+            </div>
         </div>
     );
 }

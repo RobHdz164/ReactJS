@@ -1,12 +1,12 @@
 h2{
-    color:midnightblue;
+    color:white;
 }
 
 h1{
     color: lightgreen;
 }
 .encabezado{
-    background-color: aquamarine;
+    background: linear-gradient(135deg, #1e3c5a 0%, #2d5a7b 100%);
     width: 100%;
     display: flex;
 }
