@@ -5,12 +5,14 @@ import Instagram from './assets/instagram.png';
 import Twitter from './assets/twitter.png';
 import './Encabezado.css';
 import PropTypes from 'prop-types';
+import Clima from './Clima.jsx';
 
 function Encabezado({cambiarVista}) {
   return (
     <div className="encabezado">
         <Logo/>
         <Menu cambiarVista={cambiarVista}/>
+        <Clima/>
         <Redes/>
     </div>
   );

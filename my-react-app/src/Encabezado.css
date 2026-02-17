@@ -9,78 +9,173 @@ h1{
     background: linear-gradient(135deg, #1e3c5a 0%, #2d5a7b 100%);
     width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
 }
 .logoDiv {
-    width: 15%;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     display: flex;
+    flex-shrink: 0;
 }
 .logoDiv img{
-    width: 120px;
+    width: 100px;
     transition: transform 0.3s ease;
 }
 .logoDiv img:hover {
     transform: scale(1.1);
 }
 .redesDiv {
-    width: 15%;
     justify-content: center;
     align-items: center;
     display: flex;
+    flex-shrink: 0;
 }
 .redesDiv ul{
-    width: 100%;
     list-style-type: none;
     display: flex;
-    gap: 15px;
+    gap: 10px;
     justify-content: center;
     text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
 .redesDiv img{
-    width: 50px;
-    height: 50px;
+    width: 38px;
+    height: 38px;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 .redesDiv img:hover {
-    transform: translateY(-5px) scale(1.1);
+    transform: translateY(-3px) scale(1.1);
     filter: brightness(1.2);
 }
 .redesDiv ul li a{
     text-decoration: none;
 }
 .menuDiv {
-    width: 65%;
+    flex: 1;
     justify-content: center;
     align-items: center;
     display: flex;
+    min-width: 0;
 }
 .menuDiv ul{
-    width: 100%;
     list-style-type: none;
     display: flex;
-    gap: 20px;
-    font-size: 20px;
+    gap: 5px;
+    font-size: 16px;
     font-weight: bold;
-    padding: 20px;
+    padding: 5px;
+    margin: 0;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .menuDiv ul li{
     text-decoration: none;
     color: black;
-    padding: 12px 20px;
-    border-radius: 25px;
+    padding: 10px 18px;
+    border-radius: 22px;
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 .menuDiv ul li:hover{
     background-color: cornflowerblue;
     color: white;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(100, 149, 237, 0.4);
 }
 .menuDiv ul li:active{
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(100, 149, 237, 0.3);
+}
+
+/* Estilos del componente Clima */
+.divClima {
+    width: auto;
+    min-width: 160px;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.divClima:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.clima-ubicacion {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.95rem;
+}
+
+.clima-icono {
+    font-size: 0.9rem;
+}
+
+.clima-ciudad {
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.clima-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.clima-temp {
+    color: #ffeb3b;
+    font-weight: 700;
+}
+
+.clima-separador {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.clima-humedad {
+    color: #81d4fa;
+}
+
+.clima-descripcion {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: capitalize;
+    font-style: italic;
+}
+
+.clima-cargando {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+}
+
+.clima-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

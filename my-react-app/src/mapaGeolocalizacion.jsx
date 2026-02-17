@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';           
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';           
 
 const containerStyle = {
     width: '100%',
@@ -8,6 +8,11 @@ const containerStyle = {
 
 function MapaGeolocalizacion() {
     const [ubicacion, setUbicacion] = useState(null);
+    
+    const { isLoaded, loadError } = useJsApiLoader({
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+    });
+
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -21,17 +26,17 @@ function MapaGeolocalizacion() {
         );
     },[])
 
+    if (loadError) return <div>Error al cargar el mapa</div>;
+    if (!isLoaded) return <div>Cargando mapa...</div>;
+    if (!ubicacion) return <div>Obteniendo ubicación...</div>;
+
     return(
-        <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-            {ubicacion && (
-                <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={ubicacion}
-                    zoom={16}>
-                    <Marker position={ubicacion} />
-                </GoogleMap>
-            )}
-        </LoadScript>    
+        <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={ubicacion}
+            zoom={16}>
+            <Marker position={ubicacion} />
+        </GoogleMap>   
     )
 }
 export default MapaGeolocalizacion;

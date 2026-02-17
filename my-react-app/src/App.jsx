@@ -2,6 +2,7 @@ import { useState } from "react";
 import ContenedorTarjeta from './ContenedorTarjeta.jsx';
 import Encabezado from './Encabezado.jsx';
 import Seccion from './Seccion.jsx';
+import SeccionRutas from './SeccionRutas.jsx';
 import Footer from './Footer.jsx';
 import AcercaDe from './AcercaDe.jsx';
 import Productos from './Productos.jsx';
@@ -22,11 +23,13 @@ function ContenidoPrincipal({ vista }) {
 
 function App(){
   const [vista,setVista] = useState("Inicio");
+
   return (
     <div>
       <Encabezado cambiarVista={setVista}/>
       <ContenidoPrincipal vista={vista} />
-      <Seccion/>
+      <Seccion />
+      <SeccionRutas />
       <Footer/>
     </div>
   )

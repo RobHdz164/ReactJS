@@ -1,0 +1,148 @@
+.seccion-rutas-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #f9f6f1;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.seccion-rutas-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.seccion-rutas-header h2 {
+    font-size: 2rem;
+    color: #1e3c5a;
+    margin-bottom: 8px;
+}
+
+.seccion-rutas-header p {
+    font-size: 1.1rem;
+    color: #666;
+    font-style: italic;
+}
+
+.seccion-rutas-content {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.seccion-rutas-mapa {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.seccion-rutas-leyenda {
+    width: 280px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.seccion-rutas-leyenda h3 {
+    font-size: 1.2rem;
+    color: #1e3c5a;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0ebe3;
+}
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0ebe3;
+}
+
+.leyenda-item:last-child {
+    border-bottom: none;
+}
+
+.leyenda-color {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.leyenda-nombre {
+    flex: 1;
+}
+
+.leyenda-linea {
+    width: 30px;
+    height: 4px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.leyenda-punto-central {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #1e3c5a;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.leyenda-icono {
+    font-size: 1.4rem;
+    width: 28px;
+    text-align: center;
+}
+
+.leyenda-ubicacion {
+    background-color: #e3f2fd;
+    border-radius: 8px;
+    padding: 12px 10px;
+    margin-bottom: 10px;
+}
+
+.seccion-rutas-cargando,
+.seccion-rutas-error {
+    width: 90%;
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 60px 40px;
+    background-color: #f9f6f1;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.seccion-rutas-error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+@media (max-width: 768px) {
+    .seccion-rutas-content {
+        flex-direction: column;
+    }
+
+    .seccion-rutas-leyenda {
+        width: 100%;
+    }
+
+    .seccion-rutas-container {
+        padding: 20px;
+    }
+}
