@@ -1,6 +1,8 @@
 import './Sucursales.css';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import Mapa from './mapa.jsx';
+import MapaConRuta from './MapaConRuta.jsx';
 
 const sucursales = [
     {
@@ -60,20 +62,41 @@ const sucursales = [
 ];
 
 function SucursalCard({ sucursal }) {
+    const [mostrarRuta, setMostrarRuta] = useState(false);
+
+    const toggleRuta = () => {
+        setMostrarRuta(!mostrarRuta);
+    };
+
     return (
         <div className="sucursal-card">
             <div className="sucursal-mapa">
-                <Mapa
-                    lat={sucursal.lat}
-                    lng={sucursal.lng}
-                    nombre_sucursal={sucursal.nombre}
-                />
+                {mostrarRuta ? (
+                    <MapaConRuta
+                        lat={sucursal.lat}
+                        lng={sucursal.lng}
+                        nombre_sucursal={sucursal.nombre}
+                        mostrarRuta={true}
+                    />
+                ) : (
+                    <Mapa
+                        lat={sucursal.lat}
+                        lng={sucursal.lng}
+                        nombre_sucursal={sucursal.nombre}
+                    />
+                )}
             </div>
             <div className="sucursal-info">
                 <p className="sucursal-direccion">{sucursal.direccion}</p>
                 <p className="sucursal-horario">{sucursal.horario}</p>
                 <p className="sucursal-telefono">{sucursal.telefono}</p>
                 <span className="sucursal-tag">{sucursal.caracteristica}</span>
+                <button 
+                    className={`btn-trazar-ruta ${mostrarRuta ? 'activo' : ''}`}
+                    onClick={toggleRuta}
+                >
+                    {mostrarRuta ? '📍 Ver mapa' : '🗺️ Trazar ruta'}
+                </button>
             </div>
         </div>
     );
