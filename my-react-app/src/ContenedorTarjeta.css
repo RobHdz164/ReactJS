@@ -1,7 +1,8 @@
 .ContenedorTarjeta{
-    margin: 20px;
     text-align: center;
-    width: 95%;
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
     height: 300px;
     background-color: white;
     border-radius: 15px;

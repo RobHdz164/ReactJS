@@ -1,0 +1,143 @@
+.usuarios-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 40px;
+  background-color: #f9f6f1;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.usuarios-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.usuarios-header h2 {
+  font-size: 2.2rem;
+  color: #1e3c5a;
+  margin-bottom: 8px;
+}
+
+.usuarios-header p {
+  font-size: 1.1rem;
+  color: #666;
+  font-style: italic;
+}
+
+.usuarios-tabla-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.usuarios-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.usuarios-tabla thead {
+  background: linear-gradient(135deg, #1e3c5a 0%, #2d5a7b 100%);
+}
+
+.usuarios-tabla thead tr th {
+  padding: 16px 18px;
+  text-align: left;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.usuarios-tabla tbody tr {
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #eee;
+}
+
+.usuarios-tabla tbody tr:last-child {
+  border-bottom: none;
+}
+
+.usuarios-tabla tbody tr:hover {
+  background-color: #f0f5fa;
+}
+
+.usuarios-tabla tbody tr td {
+  padding: 14px 18px;
+  font-size: 0.92rem;
+  color: #333;
+  white-space: nowrap;
+}
+
+.usuarios-tabla tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.usuarios-tabla tbody tr:nth-child(even):hover {
+  background-color: #f0f5fa;
+}
+
+.usuarios-acciones {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-editar,
+.btn-eliminar {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-editar {
+  background-color: #2d5a7b;
+  color: white;
+}
+
+.btn-editar:hover {
+  background-color: #1e3c5a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 60, 90, 0.3);
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-eliminar:hover {
+  background-color: #b52a37;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+@media (max-width: 768px) {
+  .usuarios-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .usuarios-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .usuarios-tabla thead tr th,
+  .usuarios-tabla tbody tr td {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  .btn-editar,
+  .btn-eliminar {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+}

@@ -9,14 +9,18 @@ import Productos from './Productos.jsx';
 import Galeria from './Galeria.jsx';
 import Sucursales from './Sucursales.jsx';
 import Contacto from './Contacto.jsx';
+import Usuarios from './Usuarios.jsx';
+import Carrito from './Carrito.jsx';
 
 function ContenidoPrincipal({ vista }) {
   switch (vista) {
     case 'Acerca de':  return <AcercaDe />;
     case 'Productos':  return <Productos />;
+    case  'Usuarios':   return <Usuarios />;
     case 'Galeria':    return <Galeria />;
     case 'Sucursales': return <Sucursales />;
     case 'Contacto':   return <Contacto />;
+    case 'Carrito':    return <Carrito />;
     default:           return <ContenedorTarjeta />;
   }
 }
