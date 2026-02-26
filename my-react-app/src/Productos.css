@@ -122,3 +122,47 @@
 .producto-btn:active {
   transform: translateY(0);
 }
+
+/* Botones para Productos: ponerlos uno al lado del otro y dar estilo */
+.btn-agregar,
+.btn-eliminar {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-agregar {
+  background: linear-gradient(135deg, #1e7a4c, #2aa673);
+  color: #fff;
+}
+
+.btn-agregar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(42, 166, 115, 0.18);
+}
+
+.btn-eliminar {
+  background: #fff;
+  color: #c03434;
+  border: 1px solid rgba(192, 52, 52, 0.12);
+}
+
+.btn-eliminar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(192, 52, 52, 0.08);
+}
+
+/* Asegura que los botones se alineen en una sola línea en pantallas pequeñas
+   y que se ajusten correctamente en tarjetas estrechas */
+.producto-card > .btn-agregar,
+.producto-card > .btn-eliminar {
+  vertical-align: middle;
+}

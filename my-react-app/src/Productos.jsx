@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Productos.css';
 import api from './Services/api';
+import RegistrarProducto from './registrarProducto';
 
 function Productos() {
     const [productos, setProductos] = useState([]);
@@ -24,6 +25,7 @@ function Productos() {
 
     return (
         <div className="productos-container">
+            <RegistrarProducto />
             <div className="productos-header">
                 <h2>Catálogo de Productos</h2>
                 <p>Explora nuestras opciones de calidad</p>
@@ -41,6 +43,8 @@ function Productos() {
                             </div>
                             <p className="producto-descripcion">{producto.description}</p>
                         </div>
+                        <button className="btn-agregar">Agregar al Carrito</button>
+                                <button className="btn-eliminar">Eliminar</button>
                     </div>
                 ))}
             </div>
