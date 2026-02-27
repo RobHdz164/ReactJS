@@ -49,10 +49,12 @@ function Carrito() {
                                     <div key={index} className="carrito-producto-item">
                                         <span className="producto-id">Producto #{item.productId}</span>
                                         <span className="producto-cantidad">x{item.quantity}</span>
+                                         <button className="btn-eliminar">X</button>
                                     </div>
                                 ))}
                             </div>
                         </div>
+                        <button className="btn-eliminar">Eliminar Carrito</button>
                     </div>
                 ))}
             </div>
