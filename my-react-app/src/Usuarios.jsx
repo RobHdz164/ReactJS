@@ -6,18 +6,32 @@ import RegistrarUsuario from './registrarUsuario';
 function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
     const [cargando, setCargando] = useState(true);
+    const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+
+    const obtenerUsuarios = async () => {
+        try {
+            const response = await api.get('/users');
+            setUsuarios(response.data);
+        } catch (error) {
+            console.error('Error al obtener los usuarios:', error);
+        } finally {
+            setCargando(false);
+        }
+    };
+
+    const removeUsuario = async (usuario) => {
+        try {
+            await api.delete(`/users/${usuario.id}`);
+            setUsuarios((prev) => prev.filter((u) => u.id !== usuario.id));
+            if (usuarioSeleccionado?.id === usuario.id) {
+                setUsuarioSeleccionado(null);
+            }
+        } catch (error) {
+            console.error('Error al eliminar el usuario:', error);
+        }
+    };
 
     useEffect(() => {
-        const obtenerUsuarios = async () => {
-            try{
-                const response = await api.get('/users');
-                setUsuarios(response.data);
-            }catch (error) {
-                console.error('Error al obtener los usuarios:', error);
-            } finally {
-                setCargando(false);
-            }
-        };
         obtenerUsuarios();
     }, []);
 
@@ -25,7 +39,11 @@ function Usuarios() {
 
     return (
         <div className="usuarios-container">
-                        <RegistrarUsuario/>
+            <RegistrarUsuario
+                usuarioEditado={usuarioSeleccionado}
+                limpiarSeleccion={() => setUsuarioSeleccionado(null)}
+                onActualizacionExitosa={obtenerUsuarios}
+            />
             <div className="usuarios-header">
                 <h2>Usuarios Registrados</h2>
                 <p>Lista de usuarios del sistema</p>
@@ -55,8 +73,8 @@ function Usuarios() {
                                 <td>{usuario.phone}</td>
                                 <td>{usuario.password}</td>
                                 <td className="usuarios-acciones">
-                                    <button className="btn-editar">Editar</button>
-                                    <button className="btn-eliminar">Eliminar</button>
+                                    <button className="btn-editar" onClick={()=>setUsuarioSeleccionado(usuario)}>Editar</button>
+                                    <button className="btn-eliminar" onClick={()=>removeUsuario(usuario)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))}

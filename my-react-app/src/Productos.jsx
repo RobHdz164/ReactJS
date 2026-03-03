@@ -6,18 +6,36 @@ import RegistrarProducto from './registrarProducto';
 function Productos() {
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
+    const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+
+    const obtenerProductos = async () => {
+        try {
+            const response = await api.get('/products');
+            setProductos(response.data);
+        } catch (error) {
+            console.error('Error al obtener los productos:', error);
+        } finally {
+            setCargando(false);
+        }
+    };
+
+    const editarProducto = (producto) => {
+        setProductoSeleccionado(producto);
+    };
+
+    const eliminarProducto = async (producto) => {
+        try {
+            await api.delete(`/products/${producto.id}`);
+            setProductos((prev) => prev.filter((p) => p.id !== producto.id));
+            if (productoSeleccionado?.id === producto.id) {
+                setProductoSeleccionado(null);
+            }
+        } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+        }
+    };
 
     useEffect(() => {
-        const obtenerProductos = async () => {
-            try{
-                const response = await api.get('/products');
-                setProductos(response.data);
-            }catch (error) {
-                console.error('Error al obtener los productos:', error);
-            } finally {
-                setCargando(false);
-            }
-        };
         obtenerProductos();
     }, []);
 
@@ -25,7 +43,11 @@ function Productos() {
 
     return (
         <div className="productos-container">
-            <RegistrarProducto />
+            <RegistrarProducto
+                productoEditado={productoSeleccionado}
+                limpiarSeleccion={() => setProductoSeleccionado(null)}
+                onActualizacionExitosa={obtenerProductos}
+            />
             <div className="productos-header">
                 <h2>Catálogo de Productos</h2>
                 <p>Explora nuestras opciones de calidad</p>
@@ -44,7 +66,8 @@ function Productos() {
                             <p className="producto-descripcion">{producto.description}</p>
                         </div>
                         <button className="btn-agregar">Agregar al Carrito</button>
-                                <button className="btn-eliminar">Eliminar</button>
+                        <button className="btn-editar" onClick={() => editarProducto(producto)}>Editar</button>
+                        <button className="btn-eliminar" onClick={() => eliminarProducto(producto)}>Eliminar</button>
                     </div>
                 ))}
             </div>
