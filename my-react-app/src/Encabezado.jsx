@@ -6,6 +6,7 @@ import Twitter from './assets/twitter.png';
 import './Encabezado.css';
 import PropTypes from 'prop-types';
 import Clima from './Clima.jsx';
+import { useAuth } from './AuthContext.jsx';
 
 function Encabezado({cambiarVista}) {
   return (
@@ -40,18 +41,25 @@ function Redes(){
 }
 
 function Menu({cambiarVista}){
+    const {isLoggedIn, logout} = useAuth();
     return (
         <div className='menuDiv'>
             <ul>
                 <li onClick={() => cambiarVista('Inicio')}>Inicio</li>
                 <li onClick={() => cambiarVista('Acerca de')}>Acerca de</li>
+                {isLoggedIn ? (
+                    <>
                 <li onClick={() => cambiarVista('Usuarios')}>Usuarios</li>
+                <li onClick={() => cambiarVista('Carrito')}>Carrito</li>
+                <li>Cerrar  Sesion</li>
+                    </>):
+                    (
+                <li onClick={() => cambiarVista('Login')}>Login</li>
+                    )}
                 <li onClick={() => cambiarVista('Productos')}>Productos</li>
                 <li onClick={() => cambiarVista('Galeria')}>Galeria</li>
                 <li onClick={() => cambiarVista('Sucursales')}>Sucursales</li>
                 <li onClick={() => cambiarVista('Contacto')}>Contacto</li>
-                <li onClick={() => cambiarVista('Carrito')}>Carrito</li>
-                <li onClick={() => cambiarVista('Login')}>Login</li>
             </ul>
         </div>
     )

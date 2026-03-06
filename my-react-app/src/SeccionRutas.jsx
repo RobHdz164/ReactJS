@@ -170,7 +170,7 @@ function SeccionRutas() {
                         zoom={12}
                     >
                         {/* Líneas directas desde ubicación actual a cada sucursal */}
-                        {sucursales.map((sucursal, index) => (
+                        {ubicacionActual && sucursales.map((sucursal, index) => (
                             <Polyline
                                 key={`linea-${index}`}
                                 path={[
@@ -187,22 +187,24 @@ function SeccionRutas() {
                         ))}
 
                         {/* Marcador de ubicación actual (punto central) */}
-                        <Marker
-                            position={ubicacionActual}
-                            icon={{
-                                path: google.maps.SymbolPath.CIRCLE,
-                                scale: 12,
-                                fillColor: '#1e3c5a',
-                                fillOpacity: 1,
-                                strokeColor: '#ffffff',
-                                strokeWeight: 3,
-                            }}
-                            title="Tu ubicación"
-                            zIndex={1000}
-                        />
+                        {ubicacionActual && google?.maps && (
+                            <Marker
+                                position={ubicacionActual}
+                                icon={{
+                                    path: google.maps.SymbolPath.CIRCLE,
+                                    scale: 12,
+                                    fillColor: '#1e3c5a',
+                                    fillOpacity: 1,
+                                    strokeColor: '#ffffff',
+                                    strokeWeight: 3,
+                                }}
+                                title="Tu ubicación"
+                                zIndex={1000}
+                            />
+                        )}
 
                         {/* Marcadores de sucursales con colores únicos */}
-                        {sucursales.map((sucursal, index) => (
+                        {google?.maps && sucursales.map((sucursal, index) => (
                             <Marker
                                 key={index}
                                 position={{ lat: sucursal.lat, lng: sucursal.lng }}
