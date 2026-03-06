@@ -25,6 +25,17 @@
     font-style: italic;
 }
 
+.seccion-rutas-aviso {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: #fff8e1;
+    color: #8d6e00 !important;
+    font-style: normal !important;
+    font-size: 0.95rem !important;
+    border: 1px solid #f5d27a;
+}
+
 .seccion-rutas-content {
     display: flex;
     gap: 30px;

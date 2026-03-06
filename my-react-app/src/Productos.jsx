@@ -24,6 +24,12 @@ function Productos() {
     };
 
     const eliminarProducto = async (producto) => {
+        const token = localStorage.getItem('ztarbooks_token');
+        if (!token) {
+            alert('Login inválido o sesión no iniciada. Debes iniciar sesión para eliminar productos.');
+            return;
+        }
+
         try {
             await api.delete(`/products/${producto.id}`);
             setProductos((prev) => prev.filter((p) => p.id !== producto.id));

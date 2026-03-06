@@ -62,7 +62,9 @@ function SeccionRutas() {
     const [ubicacionActual, setUbicacionActual] = useState(null);
     const [rutas, setRutas] = useState([]);
     const [error, setError] = useState(null);
+    const [avisoRutas, setAvisoRutas] = useState(null);
     const [cargando, setCargando] = useState(true);
+    const usarDirections = import.meta.env.VITE_ENABLE_DIRECTIONS === 'true';
 
     const { isLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -89,6 +91,14 @@ function SeccionRutas() {
     // Calcular rutas a todas las sucursales
     const calcularRutas = useCallback(async () => {
         if (!ubicacionActual || !isLoaded) return;
+
+        if (!usarDirections) {
+            setRutas([]);
+            setAvisoRutas('Mostrando líneas directas. Para rutas de manejo activa VITE_ENABLE_DIRECTIONS=true y habilita Routes API / Directions API en Google Cloud.');
+            setCargando(false);
+            return;
+        }
+
         if (typeof google === 'undefined' || !google.maps) {
             setError('Google Maps no está disponible.');
             setCargando(false);
@@ -111,7 +121,7 @@ function SeccionRutas() {
                             if (status === google.maps.DirectionsStatus.OK) {
                                 resolve(response);
                             } else {
-                                reject(new Error(`Error calculando ruta a ${sucursal.nombre}`));
+                                reject(new Error(`Error calculando ruta a ${sucursal.nombre}: ${status}`));
                             }
                         }
                     );
@@ -122,13 +132,16 @@ function SeccionRutas() {
                     nombre: sucursal.nombre
                 });
             } catch (err) {
-                console.error(err);
+                console.warn(err.message);
+                if (err.message.includes('REQUEST_DENIED')) {
+                    setAvisoRutas('No se pudieron calcular rutas de manejo (Directions no habilitado). Mostrando líneas directas.');
+                }
             }
         }
 
         setRutas(rutasCalculadas);
         setCargando(false);
-    }, [ubicacionActual, isLoaded]);
+    }, [ubicacionActual, isLoaded, usarDirections]);
 
     useEffect(() => {
         if (ubicacionActual && isLoaded) {
@@ -146,6 +159,7 @@ function SeccionRutas() {
             <div className="seccion-rutas-header">
                 <h2>Rutas a Nuestras Sucursales</h2>
                 <p>Desde tu ubicación actual a todas las sucursales Ztarbooks</p>
+                {avisoRutas && <p className="seccion-rutas-aviso">{avisoRutas}</p>}
             </div>
             
             <div className="seccion-rutas-content">

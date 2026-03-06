@@ -45,6 +45,13 @@ function RegistrarProducto({ productoEditado, limpiarSeleccion, onActualizacionE
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const token = localStorage.getItem('ztarbooks_token');
+
+        if (!token) {
+            alert('Login inválido o sesión no iniciada. Debes iniciar sesión para registrar productos.');
+            return;
+        }
+
         const payload = {
             ...productos,
             price: Number(productos.price),

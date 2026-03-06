@@ -11,8 +11,9 @@ import Sucursales from './Sucursales.jsx';
 import Contacto from './Contacto.jsx';
 import Usuarios from './Usuarios.jsx';
 import Carrito from './Carrito.jsx';
+import Login from './Login.jsx';
 
-function ContenidoPrincipal({ vista }) {
+function ContenidoPrincipal({ vista, cambiarVista }) {
   switch (vista) {
     case 'Acerca de':  return <AcercaDe />;
     case 'Productos':  return <Productos />;
@@ -21,6 +22,7 @@ function ContenidoPrincipal({ vista }) {
     case 'Sucursales': return <Sucursales />;
     case 'Contacto':   return <Contacto />;
     case 'Carrito':    return <Carrito />;
+    case 'Login':      return <Login onLoginExitoso={() => cambiarVista('Inicio')} />;
     default:           return <ContenedorTarjeta />;
   }
 }
@@ -31,7 +33,7 @@ function App(){
   return (
     <div>
       <Encabezado cambiarVista={setVista}/>
-      <ContenidoPrincipal vista={vista} />
+      <ContenidoPrincipal vista={vista} cambiarVista={setVista} />
       <Seccion />
       <SeccionRutas />
       <Footer/>
