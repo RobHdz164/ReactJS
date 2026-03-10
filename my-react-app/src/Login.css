@@ -119,9 +119,19 @@
 }
 
 .btn-logout {
-	background: #c62828;
+	background: linear-gradient(135deg, #d32f2f, #b71c1c);
 	color: #fff;
+	border: 1px solid #8e1616;
 	white-space: nowrap;
+}
+
+.btn-logout:hover {
+	background: linear-gradient(135deg, #c62828, #a31717);
+	box-shadow: 0 6px 14px rgba(183, 28, 28, 0.28);
+}
+
+.btn-logout:active {
+	transform: translateY(0);
 }
 
 @media (max-width: 600px) {

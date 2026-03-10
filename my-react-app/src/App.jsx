@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContenedorTarjeta from './ContenedorTarjeta.jsx';
 import Encabezado from './Encabezado.jsx';
 import Seccion from './Seccion.jsx';
@@ -13,8 +13,9 @@ import Usuarios from './Usuarios.jsx';
 import Carrito from './Carrito.jsx';
 import Login from './Login.jsx';
 import { AuthProvider } from "./AuthContext.jsx";
+import './App.css';
 
-function ContenidoPrincipal({ vista, cambiarVista }) {
+function ContenidoPrincipal({ vista, onLoginExitoso }) {
   switch (vista) {
     case 'Acerca de':  return <AcercaDe />;
     case 'Productos':  return <Productos />;
@@ -23,19 +24,38 @@ function ContenidoPrincipal({ vista, cambiarVista }) {
     case 'Sucursales': return <Sucursales />;
     case 'Contacto':   return <Contacto />;
     case 'Carrito':    return <Carrito />;
-    case 'Login':      return <Login />;
+    case 'Login':      return <Login onLoginExitoso={onLoginExitoso} />;
     default:           return <ContenedorTarjeta />;
   }
 }
 
 function App(){
   const [vista,setVista] = useState("Inicio");
+  const [mensajeInicio, setMensajeInicio] = useState('');
+
+  useEffect(() => {
+    if (!mensajeInicio) return;
+
+    const timeoutId = setTimeout(() => {
+      setMensajeInicio('');
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [mensajeInicio]);
+
+  const manejarLoginExitoso = (mensaje) => {
+    setMensajeInicio(mensaje || 'Inicio de sesión exitoso.');
+    setVista('Inicio');
+  };
 
   return (
     <div>
       <AuthProvider>
       <Encabezado cambiarVista={setVista}/>
-      <ContenidoPrincipal vista={vista} cambiarVista={setVista} />
+      {vista === 'Inicio' && mensajeInicio && (
+        <div className="app-login-exito">{mensajeInicio}</div>
+      )}
+      <ContenidoPrincipal vista={vista} onLoginExitoso={manejarLoginExitoso} />
       </AuthProvider>
       <Seccion />
       <SeccionRutas />

@@ -2,8 +2,10 @@ import './Login.css';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import API from './Services/api';
+import { useAuth } from './AuthContext.jsx';
 
 function Login({ onLoginExitoso }) {
+    const { isLoggedIn, login, logout } = useAuth();
     const [credenciales, setCredenciales] = useState({
         username: '',
         password: ''
@@ -11,7 +13,6 @@ function Login({ onLoginExitoso }) {
     const [cargando, setCargando] = useState(false);
     const [mensaje, setMensaje] = useState('');
     const [error, setError] = useState('');
-    const [tokenActivo, setTokenActivo] = useState(Boolean(localStorage.getItem('ztarbooks_token')));
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,12 +37,11 @@ function Login({ onLoginExitoso }) {
                 return;
             }
 
-            localStorage.setItem('ztarbooks_token', token);
-            setTokenActivo(true);
+            login(token);
             setMensaje('Inicio de sesión exitoso. Token guardado correctamente.');
 
             if (onLoginExitoso) {
-                setTimeout(() => onLoginExitoso(), 700);
+                setTimeout(() => onLoginExitoso('Inicio de sesión exitoso.'), 700);
             }
         } catch {
             setError('Login inválido. Verifica usuario y contraseña.');
@@ -50,9 +50,8 @@ function Login({ onLoginExitoso }) {
         }
     };
 
-    const cerrarSesion = () => {
-        localStorage.removeItem('ztarbooks_token');
-        setTokenActivo(false);
+    const handleLogout = () => {
+        logout();
         setMensaje('Sesión cerrada correctamente.');
         setError('');
     };
@@ -98,10 +97,10 @@ function Login({ onLoginExitoso }) {
                 {error && <div className="login-alert login-error">{error}</div>}
                 {mensaje && <div className="login-alert login-success">{mensaje}</div>}
 
-                {tokenActivo && (
+                {isLoggedIn && (
                     <div className="login-token-info">
                         <span>Ya existe una sesión activa en este navegador.</span>
-                        <button className="btn-logout" onClick={cerrarSesion}>Cerrar sesión</button>
+                        <button className="btn-logout" onClick={handleLogout}>Cerrar sesión</button>
                     </div>
                 )}
             </div>

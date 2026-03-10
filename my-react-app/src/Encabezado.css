@@ -92,6 +92,22 @@ h1{
     box-shadow: 0 2px 6px rgba(100, 149, 237, 0.3);
 }
 
+.menuDiv ul li.menu-logout {
+    color: #fff;
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    border: 1px solid #8e1616;
+}
+
+.menuDiv ul li.menu-logout:hover {
+    background: linear-gradient(135deg, #c62828, #a31717);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(183, 28, 28, 0.45);
+}
+
+.menuDiv ul li.menu-logout:active {
+    box-shadow: 0 2px 6px rgba(183, 28, 28, 0.35);
+}
+
 /* Estilos del componente Clima */
 .divClima {
     width: auto;
