@@ -3,9 +3,11 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import API from './Services/api';
 import { useAuth } from './AuthContext.jsx';
+import RegistrarUsuario from './registrarUsuario.jsx';
 
 function Login({ onLoginExitoso }) {
     const { isLoggedIn, login, logout } = useAuth();
+    const [mostrarRegistro, setMostrarRegistro] = useState(false);
     const [credenciales, setCredenciales] = useState({
         username: '',
         password: ''
@@ -56,6 +58,30 @@ function Login({ onLoginExitoso }) {
         setError('');
     };
 
+    if (mostrarRegistro) {
+        return (
+            <div className="login-container">
+                <div className="login-card">
+                    <RegistrarUsuario 
+                        onActualizacionExitosa={() => {
+                            setMostrarRegistro(false);
+                            setMensaje('Usuario registrado exitosamente. Ahora puedes iniciar sesión.');
+                        }}
+                    />
+                    <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                        <a 
+                            href="#" 
+                            onClick={(e) => { e.preventDefault(); setMostrarRegistro(false); }}
+                            style={{ color: '#007bff', textDecoration: 'none' }}
+                        >
+                            ¿Ya tienes usuario?
+                        </a>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="login-container">
             <div className="login-card">
@@ -88,7 +114,9 @@ function Login({ onLoginExitoso }) {
                             required
                         />
                     </div>
+                    <div>
 
+                    </div>
                     <button type="submit" className="btn-login" disabled={cargando}>
                         {cargando ? 'Validando...' : 'Ingresar'}
                     </button>
@@ -97,12 +125,16 @@ function Login({ onLoginExitoso }) {
                 {error && <div className="login-alert login-error">{error}</div>}
                 {mensaje && <div className="login-alert login-success">{mensaje}</div>}
 
-                {isLoggedIn && (
-                    <div className="login-token-info">
-                        <span>Ya existe una sesión activa en este navegador.</span>
-                        <button className="btn-logout" onClick={handleLogout}>Cerrar sesión</button>
-                    </div>
-                )}
+                <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                    <a 
+                        href="#" 
+                        onClick={(e) => { e.preventDefault(); setMostrarRegistro(true); }}
+                        style={{ color: '#007bff', textDecoration: 'none' }}
+                    >
+                        ¿Registrar Usuario?
+                    </a>
+                </div>
+
             </div>
         </div>
     );

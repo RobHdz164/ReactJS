@@ -12,6 +12,7 @@ import Contacto from './Contacto.jsx';
 import Usuarios from './Usuarios.jsx';
 import Carrito from './Carrito.jsx';
 import Login from './Login.jsx';
+import Categorias from './Categorias.jsx';
 import { AuthProvider } from "./AuthContext.jsx";
 import './App.css';
 
@@ -20,6 +21,7 @@ function ContenidoPrincipal({ vista, onLoginExitoso }) {
     case 'Acerca de':  return <AcercaDe />;
     case 'Productos':  return <Productos />;
     case  'Usuarios':   return <Usuarios />;
+    case 'Categorias': return <Categorias />;
     case 'Galeria':    return <Galeria />;
     case 'Sucursales': return <Sucursales />;
     case 'Contacto':   return <Contacto />;

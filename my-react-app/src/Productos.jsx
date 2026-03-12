@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import './Productos.css';
 import api from './Services/api';
 import RegistrarProducto from './registrarProducto';
+import { useAuth } from './AuthContext.jsx';
 
 function Productos() {
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+    const { isLoggedIn } = useAuth();
 
     const obtenerProductos = async () => {
         try {
@@ -45,15 +47,23 @@ function Productos() {
         obtenerProductos();
     }, []);
 
+    useEffect(() => {
+        if (!isLoggedIn) {
+            setProductoSeleccionado(null);
+        }
+    }, [isLoggedIn]);
+
     if (cargando) return <p>Cargando Productos...</p>;
 
     return (
         <div className="productos-container">
-            <RegistrarProducto
-                productoEditado={productoSeleccionado}
-                limpiarSeleccion={() => setProductoSeleccionado(null)}
-                onActualizacionExitosa={obtenerProductos}
-            />
+            {isLoggedIn && (
+                <RegistrarProducto
+                    productoEditado={productoSeleccionado}
+                    limpiarSeleccion={() => setProductoSeleccionado(null)}
+                    onActualizacionExitosa={obtenerProductos}
+                />
+            )}
             <div className="productos-header">
                 <h2>Catálogo de Productos</h2>
                 <p>Explora nuestras opciones de calidad</p>
@@ -72,8 +82,12 @@ function Productos() {
                             <p className="producto-descripcion">{producto.description}</p>
                         </div>
                         <button className="btn-agregar">Agregar al Carrito</button>
-                        <button className="btn-editar" onClick={() => editarProducto(producto)}>Editar</button>
-                        <button className="btn-eliminar" onClick={() => eliminarProducto(producto)}>Eliminar</button>
+                        {isLoggedIn && (
+                            <>
+                                <button className="btn-editar" onClick={() => editarProducto(producto)}>Editar</button>
+                                <button className="btn-eliminar" onClick={() => eliminarProducto(producto)}>Eliminar</button>
+                            </>
+                        )}
                     </div>
                 ))}
             </div>

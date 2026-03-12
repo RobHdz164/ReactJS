@@ -58,6 +58,7 @@ function Menu({cambiarVista}){
                 {isLoggedIn ? (
                     <>
                 <li onClick={() => cambiarVista('Usuarios')}>Usuarios</li>
+                <li onClick={() => cambiarVista('Categorias')}>Categorias</li>
                 <li onClick={() => cambiarVista('Carrito')}>Carrito</li>
                 <li className='menu-logout' onClick={handleLogout}>Cerrar Sesión</li>
                     </>):
